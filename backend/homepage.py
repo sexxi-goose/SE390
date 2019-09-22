@@ -6,9 +6,9 @@ home_endpoint = Blueprint("home_endpoint", __name__, url_prefix="")
 def create_room():
     """Endpoint to receive create room requests.
     """
-    room_id = request.form["room_id"]
-    username = request.form["username"]
-    print(room_id, username, request.form)
+    room_id = request.json["room_id"]
+    username = request.json["username"]
+    print(room_id, username, request.json)
     return "", 200
 
 
@@ -16,9 +16,7 @@ def create_room():
 def join_room():
     """Endpoint to join a room.
     """
-    room_id = request.form["room_id"]
-    username = request.form["username"]
-    print(room_id, username, request.form)
+    room_id = request.json["room_id"]
+    username = request.json["username"]
+    print(room_id, username, request.json)
     return "", 200
-
-
