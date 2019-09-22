@@ -9,7 +9,8 @@ export class LoginForm extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
+    this.handleJoin   = this.handleJoin.bind(this);
   }
 
   handleChange(event) {
@@ -22,13 +23,19 @@ export class LoginForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleJoin(event){
+    var request = new XMLHttpRequest();
+
+    request.open('POST', '/join', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify({ room_id: this.state.room_id,
+                              username: this.state.username }));
+  }
+  handleCreate(event) {
     var request = new XMLHttpRequest();
 
     request.open('POST', '/create', true);
     request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    request.setRequestHeader('Access-Control-Allow-Credentials', 'true');
     request.send(JSON.stringify({ room_id: this.state.room_id,
                               username: this.state.username }));
   }
@@ -52,8 +59,11 @@ export class LoginForm extends React.Component {
 
         <br/>
 
-        <button type="submit" value="Submit">
-            Submit
+        <button type="submit" value="Create" onClick={this.handleCreate}>
+            Create
+        </button>
+        <button type="submit" value="Join" onClick={this.handleJoin}>
+            Join
         </button>
       </form>
     );
