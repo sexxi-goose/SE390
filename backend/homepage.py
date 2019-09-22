@@ -8,7 +8,17 @@ def create_room():
     """
     room_id = request.form["room_id"]
     username = request.form["username"]
-    print(room_id, username)
+    print(room_id, username, request.form)
+    return "", 200
+
+
+@home_endpoint.route("/join", methods=["POST"])
+def join_room():
+    """Endpoint to join a room.
+    """
+    room_id = request.form["room_id"]
+    username = request.form["username"]
+    print(room_id, username, request.form)
     return "", 200
 
 
