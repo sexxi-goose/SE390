@@ -1,0 +1,54 @@
+.Game-Left {
+    float:left;
+    display:inline-block;
+    width:20%;
+}
+
+.Game-Right {
+    float:right;
+    display:inline-block;
+    width:80%;
+}
+
+.Game {
+    width: 100%;
+}
+
+.PlayerNames{
+    margin: 20px auto 20px auto;
+}
+
+.Boards{
+    margin: 10px auto 10px auto;
+    border: 1px solid black;
+}
+
+.Card{
+    width: 100px;
+    height: 130px;
+    margin: 10px 10px 10px 10px;
+    background-color: blue;
+}
+
+.Circle{
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    margin: 10px 10px 10px 10px;
+    background-color: blue;
+}
+
+#Good {
+    background-color: greenyellow;
+}
+
+#Evil {
+    background-color: red;
+}
+
+#DisplayButton {
+    display: flex;
+    justify-content: center;
+}
