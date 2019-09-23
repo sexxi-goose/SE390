@@ -25,7 +25,7 @@ export class LoginForm extends React.Component {
   }
 
   handleJoin(event){
-    var request = new XMLHttpRequest();
+    event.preventDefault();
 
     fetch('/join', {
         method: "POST",
