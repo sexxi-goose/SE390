@@ -41,6 +41,7 @@ export class LoginForm extends React.Component {
     request.send(JSON.stringify({ room_id: this.state.room_id,
                               username: this.state.username }));
   }
+
   handleCreate(event) {
     var request = new XMLHttpRequest();
 
