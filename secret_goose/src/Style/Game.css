@@ -16,6 +16,11 @@
 
 .PlayerNames{
     margin: 20px auto 20px auto;
+    font-size: 20px;
+}
+
+.PlayerNames th {
+    font-weight: normal;
 }
 
 .Boards{
@@ -27,7 +32,12 @@
     width: 100px;
     height: 130px;
     margin: 10px 10px 10px 10px;
-    background-color: blue;
+    background-color: #80808021; /* Light Grey Color */
+    border: 1px solid black;
+}
+
+.Card img {
+    border: 2px solid black;
 }
 
 .Circle{
@@ -37,18 +47,48 @@
     -moz-border-radius: 25px;
     border-radius: 25px;
     margin: 10px 10px 10px 10px;
-    background-color: blue;
+    background-color: #80808021; /* Light Grey Color */
+    border: 2px solid black;
 }
 
-#Good {
-    background-color: greenyellow;
-}
-
-#Evil {
-    background-color: red;
+#CircleSelect {
+    background-color: black;
 }
 
 #DisplayButton {
     display: flex;
     justify-content: center;
+}
+
+#DisplayButton button {
+    font-size: 20px;
+}
+
+.BoardTitles {
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#bold {
+    font-weight: bold;
+}
+
+.Icon{
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: 0px;
+    border: 1px solid black;
+}
+
+#IconPrez{
+    background-color: gold;
+}
+
+#IconChan{
+    background-color: #e07e58; /* Orange-Red Color */
 }

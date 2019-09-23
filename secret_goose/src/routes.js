@@ -9,7 +9,7 @@ class ReactRouter extends React.Component {
     return (
       <React.Fragment>
         <Route exact path="/" component={App} />
-        <Route  path="/game" component={Game} />
+        <Route  path="/game/:roomNum" component={Game} />
       </React.Fragment>
     );
   }
