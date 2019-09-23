@@ -66,28 +66,33 @@ export class LoginForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit} class="center" noValidate >
-        <label>
-          <span>Room ID: </span>
-          <input type="text" name="roomId" placeholder="Enter Room ID" required
-          onChange={this.handleChange} />
-        </label>
+        <div class="input">
+          <label>
+            <span>Room ID: </span>
+            <input type="text" name="roomId" placeholder="Enter Room ID" required
+            onChange={this.handleChange} />
+          </label>
+
+          <br/>
+
+          <label>
+            <span>Username: </span>
+            <input type="text" name="username" placeholder="Enter Username" required
+            onChange={this.handleChange} />
+          </label>
+        </div>
 
         <br/>
 
-        <label>
-          <span>Username: </span>
-          <input type="text" name="username" placeholder="Enter Username" required
-          onChange={this.handleChange} />
-        </label>
-
-        <br/>
-
-        <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreate}>
-            Create
-        </button>
-        <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoin}>
-            Join
-        </button>
+        <div class="submitButtons">
+          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreate}>
+              Create
+          </button>
+          <div class="spacer"></div>
+          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoin}>
+              Join
+          </button>
+        </div>
       </form>
     );
   }
