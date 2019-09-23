@@ -1,0 +1,32 @@
+.submitButtons {
+  display: flex;
+  flex-flow: row;
+  width: 48vh;
+  justify-content:flex-end;
+}
+
+.input {
+    /* in order to define widths */
+    /* positions the label text beside the input */
+    display: flex;
+    flex-flow: column;
+    margin-top: 70px;
+    justify-content: center;
+    text-align: right
+}
+
+button {
+  flex-grow: 1;
+}
+
+.spacer{
+  flex-grow:2;
+}
+
+
+form {
+  display: flex;
+  flex-flow: column;
+  margin-top: 70px;
+  align-items: center;
+}
