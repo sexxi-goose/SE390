@@ -43,6 +43,7 @@ export class LoginForm extends React.Component {
   }
 
   handleCreate(event) {
+    event.preventDefault();
     var request = new XMLHttpRequest();
 
     request.open('POST', '/create', true);
