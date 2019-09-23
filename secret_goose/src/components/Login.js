@@ -1,5 +1,5 @@
 import React from 'react';
-import './../Login.css';
+import './../Style/Login.css';
 import { Redirect } from 'react-router-dom'
 
 export class LoginForm extends React.Component {
@@ -26,7 +26,7 @@ export class LoginForm extends React.Component {
     this.setState({redirectToGame:true})
   }
 
-  handleJoin = (event) => {
+  handleJoinRoom = (event) => {
     event.preventDefault();
 
     fetch('/join', {
@@ -42,7 +42,7 @@ export class LoginForm extends React.Component {
     this.routeToGame();
   }
 
-  handleCreate = (event) => {
+  handleCreateRoom = (event) => {
     event.preventDefault();
     fetch('/create', {
         method: "POST",
@@ -85,11 +85,11 @@ export class LoginForm extends React.Component {
         <br/>
 
         <div class="submitButtons">
-          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreate}>
+          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
               Create
           </button>
           <div class="spacer"></div>
-          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoin}>
+          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
               Join
           </button>
         </div>
