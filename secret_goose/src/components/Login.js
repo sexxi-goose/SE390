@@ -22,28 +22,37 @@ export class LoginForm extends React.Component {
 
   routeToGame = () => {
     context.history.push('/game')
-
-
   }
 
   handleJoin = (event) => {
     event.preventDefault();
-    var request = new XMLHttpRequest();
 
-    request.open('POST', '/join', true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({ roomId: this.state.roomId,
-                              username: this.state.username }));
+    fetch('/join', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          room_id: this.state.roomId,
+          username: this.state.username
+        }),
+    });
     this.routeToGame();
   }
+
   handleCreate = (event) => {
     event.preventDefault();
-    var request = new XMLHttpRequest();
+    fetch('/create', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          room_id: this.state.roomId,
+          username: this.state.username
+        }),
+    });
 
-    request.open('POST', '/create', true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({ roomId: this.state.roomId,
-                              username: this.state.username }));
     this.routeToGame();
   }
 
