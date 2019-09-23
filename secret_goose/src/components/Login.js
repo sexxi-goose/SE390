@@ -27,7 +27,16 @@ export class LoginForm extends React.Component {
   handleJoin(event){
     var request = new XMLHttpRequest();
 
-    request.open('POST', '/join', true);
+    fetch('/join', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          room_id: this.state.roomId,
+          username: this.state.username
+        }),
+    });
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify({ room_id: this.state.room_id,
                               username: this.state.username }));
