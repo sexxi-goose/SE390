@@ -1,6 +1,7 @@
 import React from 'react';
-import './../Game.css';
+import './../Style/Game.css';
 import Header from "./Header";
+import {VoteModal, ChoosePolicyModal, RoleModal, ChooseChancellorModal}  from "./Popups"
 
 function GenerateBoard(data) {
   return (<div class="Game-Right">
@@ -81,9 +82,9 @@ function Game() {
         </tr>
       </table>
       <div id="DisplayButton">
-        <button type="button">Display Role</button>
+        {RoleModal("Evil", "Goose", ["Player1", "Player2"])}
       </div>
-      
+
     </div>
     <GenerateBoard name="Good"/>
     <GenerateBoard name="Evil"/>
