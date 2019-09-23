@@ -1,7 +1,6 @@
 import React from 'react';
 import './../Style/Login.css';
 import { Redirect } from 'react-router-dom'
-<<<<<<< HEAD
 import socketIOClient from 'socket.io-client'
 import Header from "./Header";
 
@@ -9,8 +8,6 @@ const REQUEST_USERID_ROOMID = "SendUseridRoomid"
 const RESPONSE_USERID_ROOMID = "UseridRoomid"
 const NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
 const ENDPOINT = ""
-=======
->>>>>>> fuckit i made a new branch
 
 export class LoginForm extends React.Component {
   constructor(props) {
@@ -20,11 +17,15 @@ export class LoginForm extends React.Component {
       username: "",
       redirectToGame: false
     };
-<<<<<<< HEAD
 
     this.socketConnection = null
-=======
->>>>>>> fuckit i made a new branch
+  }
+
+  validateRoomID = (event) => {
+    console.log(this.state.roomId);
+    if(this.state.roomId.length > 8){
+      this.state.roomId = this.state.roomId.substring(0, 8);
+    }
   }
 
   handleChange = (event) => {
@@ -41,7 +42,6 @@ export class LoginForm extends React.Component {
     this.setState({redirectToGame:true})
   }
 
-<<<<<<< HEAD
   setupWebsocket = () => {
     this.socketConnection = socketIOClient(ENDPOINT);
     this.socketConnection.on(NEW_USER_JOINED_ROOM, data => {
@@ -56,9 +56,8 @@ export class LoginForm extends React.Component {
     });
   }
 
-=======
->>>>>>> fuckit i made a new branch
   handleJoinRoom = (event) => {
+    this.validateRoomID();
     event.preventDefault();
 
     fetch('/join', {
@@ -71,15 +70,13 @@ export class LoginForm extends React.Component {
           username: this.state.username
         }),
     });
-<<<<<<< HEAD
 
     this.setupWebsocket();
-=======
->>>>>>> fuckit i made a new branch
     this.routeToGame();
   }
 
   handleCreateRoom = (event) => {
+    this.validateRoomID();
     event.preventDefault();
     fetch('/create', {
         method: "POST",
@@ -92,10 +89,7 @@ export class LoginForm extends React.Component {
         }),
     });
 
-<<<<<<< HEAD
     this.setupWebsocket();
-=======
->>>>>>> fuckit i made a new branch
     this.routeToGame();
   }
 
@@ -103,7 +97,6 @@ export class LoginForm extends React.Component {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
 
     if(this.state.redirectToGame){
-<<<<<<< HEAD
       return <Redirect to={'/game/'+this.state.roomId} />
     }
 
@@ -140,41 +133,6 @@ export class LoginForm extends React.Component {
           </div>
         </form>
       </div>
-=======
-      return <Redirect to='/game' />
-    }
-
-    return (
-      <form onSubmit={this.handleSubmit} class="center" noValidate >
-        <div class="input">
-          <label>
-            <span>Room ID: </span>
-            <input type="text" name="roomId" placeholder="Enter Room ID" required
-            onChange={this.handleChange} />
-          </label>
-
-          <br/>
-
-          <label>
-            <span>Username: </span>
-            <input type="text" name="username" placeholder="Enter Username" required
-            onChange={this.handleChange} />
-          </label>
-        </div>
-
-        <br/>
-
-        <div class="submitButtons">
-          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
-              Create
-          </button>
-          <div class="spacer"></div>
-          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
-              Join
-          </button>
-        </div>
-      </form>
->>>>>>> fuckit i made a new branch
     );
   }
 }
