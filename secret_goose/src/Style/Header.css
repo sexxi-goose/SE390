@@ -1,20 +1,23 @@
 #Title {
+    flex-grow: 2;
     text-align: center;
 }
 
 #RoomCode {
-    height: 50px;
-    width: 150px;
+    flex-grow: 1;
     border: 1px solid black;
-    margin: -60px 0px 0px 0px;
     text-align: center;
-    font-weight: bold;
 }
+
 #RoomCode p {
     font-size: 30px;
-    margin: 8px;
+    margin: 15px;
 }
 
 #Top {
+    flex-wrap: wrap;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
     margin: 20px;
 }
