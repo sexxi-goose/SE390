@@ -1,12 +1,14 @@
 import React from 'react';
 import './../Login.css';
+import { Redirect } from 'react-router-dom'
 
 export class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       roomId: "",
-      username: ""
+      username: "",
+      redirectToGame: false
     };
   }
 
@@ -21,7 +23,7 @@ export class LoginForm extends React.Component {
   }
 
   routeToGame = () => {
-    context.history.push('/game')
+    this.setState({redirectToGame:true})
   }
 
   handleJoin = (event) => {
@@ -58,12 +60,15 @@ export class LoginForm extends React.Component {
 
   render() {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
+    if(this.state.redirectToGame){
+      return <Redirect to='/game' />
+    }
 
     return (
       <form onSubmit={this.handleSubmit} class="center" noValidate >
         <label>
           <span>Room ID: </span>
-          <input type="text" name="room_id" placeholder="Enter Room ID" required
+          <input type="text" name="roomId" placeholder="Enter Room ID" required
           onChange={this.handleChange} />
         </label>
 
