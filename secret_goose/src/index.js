@@ -5,9 +5,7 @@ import './index.css';
 import {BrowserRouter as Router}  from 'react-router-dom';
 import ReactRouter from './routes';
 
-
 ReactDOM.render(<Router>
-
     <ReactRouter/>
 </Router>
     ,

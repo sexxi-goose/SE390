@@ -28,3 +28,9 @@ $ python3 main.py
 $ cd $PROJECT_ROOT/secret_goose
 $ npm start
 ```
+
+
+## Images used
+
+- https://pixabay.com/vectors/poop-shit-wc-2024794/
+- https://pixabay.com/vectors/alphabet-word-images-animal-canada-1293059/
