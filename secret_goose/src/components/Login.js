@@ -105,7 +105,7 @@ export class LoginForm extends React.Component {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
 
     if(this.state.redirectToGame){
-      const redirectUrl = "/game/" + this.state.roomId;
+      const redirectUrl = "/lobby/" + this.state.roomId;
       return <Redirect to={redirectUrl} />
     }
 
