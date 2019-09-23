@@ -1,5 +1,5 @@
 import React from 'react';
-import './../Header.css';
+import './../Style/Header.css';
 
 function RoomCode(code) {
     if (code && code.value) {
