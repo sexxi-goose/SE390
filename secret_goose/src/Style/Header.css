@@ -9,7 +9,10 @@
     margin: -60px 0px 0px 0px;
     text-align: center;
     font-weight: bold;
-
+}
+#RoomCode p {
+    font-size: 30px;
+    margin: 8px;
 }
 
 #Top {
