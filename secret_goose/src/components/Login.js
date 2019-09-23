@@ -1,5 +1,6 @@
 import React from 'react';
-import './Login.css';
+import './../Style/Login.css';
+import { Redirect } from 'react-router-dom'
 
 export class LoginForm extends React.Component {
   constructor(props) {
@@ -21,7 +22,11 @@ export class LoginForm extends React.Component {
     });
   }
 
-  handleJoin(event){
+  routeToGame = () => {
+    this.setState({redirectToGame:true})
+  }
+
+  handleJoinRoom = (event) => {
     event.preventDefault();
 
     fetch('/join', {
@@ -34,25 +39,28 @@ export class LoginForm extends React.Component {
           username: this.state.username
         }),
     });
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({ roomId: this.state.roomId,
-                              username: this.state.username }));
     this.routeToGame();
   }
 
-  handleCreate(event) {
+  handleCreateRoom = (event) => {
     event.preventDefault();
-    var request = new XMLHttpRequest();
+    fetch('/create', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          room_id: this.state.roomId,
+          username: this.state.username
+        }),
+    });
 
-    request.open('POST', '/create', true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({ roomId: this.state.roomId,
-                              username: this.state.username }));
     this.routeToGame();
   }
 
   render() {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
+
     if(this.state.redirectToGame){
       return <Redirect to='/game' />
     }
@@ -78,11 +86,11 @@ export class LoginForm extends React.Component {
         <br/>
 
         <div class="submitButtons">
-          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreate}>
+          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
               Create
           </button>
           <div class="spacer"></div>
-          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoin}>
+          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
               Join
           </button>
         </div>
