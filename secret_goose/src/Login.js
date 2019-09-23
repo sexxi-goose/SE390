@@ -5,16 +5,12 @@ export class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      room_id: "",
+      roomId: "",
       username: ""
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleCreate = this.handleCreate.bind(this);
-    this.handleJoin   = this.handleJoin.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -38,8 +34,9 @@ export class LoginForm extends React.Component {
         }),
     });
     request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({ room_id: this.state.room_id,
+    request.send(JSON.stringify({ roomId: this.state.roomId,
                               username: this.state.username }));
+    this.routeToGame();
   }
 
   handleCreate(event) {
@@ -48,13 +45,16 @@ export class LoginForm extends React.Component {
 
     request.open('POST', '/create', true);
     request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({ room_id: this.state.room_id,
+    request.send(JSON.stringify({ roomId: this.state.roomId,
                               username: this.state.username }));
+    this.routeToGame();
   }
 
   render() {
+    const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
+
     return (
-      <form onSubmit={this.handleSubmit} class="center">
+      <form onSubmit={this.handleSubmit} class="center" noValidate >
         <label>
           <span>Room ID: </span>
           <input type="text" name="room_id" placeholder="Enter Room ID" required
@@ -71,10 +71,10 @@ export class LoginForm extends React.Component {
 
         <br/>
 
-        <button type="submit" value="Create" onClick={this.handleCreate}>
+        <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreate}>
             Create
         </button>
-        <button type="submit" value="Join" onClick={this.handleJoin}>
+        <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoin}>
             Join
         </button>
       </form>
