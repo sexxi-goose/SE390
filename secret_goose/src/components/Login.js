@@ -2,6 +2,7 @@ import React from 'react';
 import './../Style/Login.css';
 import { Redirect } from 'react-router-dom'
 import socketIOClient from 'socket.io-client'
+import Header from "./Header";
 
 const REQUEST_USERID_ROOMID = "SendUseridRoomid"
 const RESPONSE_USERID_ROOMID = "UseridRoomid"
@@ -87,39 +88,42 @@ export class LoginForm extends React.Component {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
 
     if(this.state.redirectToGame){
-      return <Redirect to='/game' />
+      return <Redirect to={'/game/'+this.state.roomId} />
     }
 
     return (
-      <form onSubmit={this.handleSubmit} class="center" noValidate >
-        <div class="input">
-          <label>
-            <span>Room ID: </span>
-            <input type="text" name="roomId" placeholder="Enter Room ID" required
-            onChange={this.handleChange} />
-          </label>
+      <div>
+        <Header />
+        <form onSubmit={this.handleSubmit} class="center" noValidate >
+          <div class="input">
+            <label>
+              <span>Room ID: </span>
+              <input type="text" name="roomId" placeholder="Enter Room ID" required
+              onChange={this.handleChange} />
+            </label>
+
+            <br/>
+
+            <label>
+              <span>Username: </span>
+              <input type="text" name="username" placeholder="Enter Username" required
+              onChange={this.handleChange} />
+            </label>
+          </div>
 
           <br/>
 
-          <label>
-            <span>Username: </span>
-            <input type="text" name="username" placeholder="Enter Username" required
-            onChange={this.handleChange} />
-          </label>
-        </div>
-
-        <br/>
-
-        <div class="submitButtons">
-          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
-              Create
-          </button>
-          <div class="spacer"></div>
-          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
-              Join
-          </button>
-        </div>
-      </form>
+          <div class="submitButtons">
+            <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
+                Create
+            </button>
+            <div class="spacer"></div>
+            <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
+                Join
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

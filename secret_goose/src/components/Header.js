@@ -13,7 +13,6 @@ function RoomCode(code) {
 }
 
 function Header(display) {
-    const show = display.value;
     return (
         <div id="Top">
         <h1 id="Title">SecretGOOSE</h1>

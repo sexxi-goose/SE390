@@ -7,20 +7,25 @@ import BadCard from '../assets/EvilCard.png';
 
 function GenerateBoard(data) {
   const coll = data.policies.map(function (val, idx) {
-    return (<th>
-      <div class="Card">
+    return (<th key={idx}>
+      <div className="Card">
         {data.totalPoliciesPassed > idx &&
-        <img src={(data.title === "Good Policies" && GoodCard) || (data.title === "Evil Policies" && BadCard)}/>}
+        <img alt={(data.title === "Good Policies" && "GoodCard") ||
+          (data.title === "Evil Policies" && "BadCard") ||
+          ("None")} src={(data.title === "Good Policies" && GoodCard) ||
+          (data.title === "Evil Policies" && BadCard)}/>}
       </div>
   </th>);
   });
   return (<div>
-    <table class="Boards">
-      <tr>
-        {coll}
-      </tr>
+    <table className="Boards">
+      <tbody>
+        <tr>
+          {coll}
+        </tr>
+      </tbody>
     </table>
-    <p class="BoardTitles">{data.title}</p>
+    <p className="BoardTitles">{data.title}</p>
   </div>);
 }
 
@@ -28,30 +33,40 @@ function GenerateElectionTracker(data) {
   let coll = [];
 
   for (let i = 0; i < 4; i++) {
-    coll.push(<th>
-      <div class="Circle" id={data.electionNum > i?"CircleSelect":""}>
+    coll.push(<th key={i}>
+      <div className="Circle" id={data.electionNum > i?"CircleSelect":""}>
       </div>
     </th>);
   }
 
   return (<div>
-    <table class="Boards">
-      <tr>
-        {coll}
-      </tr>
+    <table className="Boards">
+      <tbody>
+        <tr>
+          {coll}
+        </tr>
+      </tbody>
     </table>
-    <p class="BoardTitles">Election Tracker</p>
+    <p className="BoardTitles">Election Tracker</p>
   </div>);
 }
 
 function GenerateUserNameTable(data) {
   const rows = data.players.map(function(name,idx) {
-    return (<tr>
-      <th>{data.prez == idx && <div class="Icon" id="IconPrez">P</div>}{data.cha == idx && <div class="Icon" id="IconChan">C</div>}</th>
-      <th id={data.id == idx && "bold"}>{name}</th>
-    </tr>);
+    return (
+      <tbody key={idx}>
+        <tr>
+        <th>
+          {parseInt(data.prez) === idx && <div className="Icon" id="IconPrez">P</div>}
+          {parseInt(data.cha) === idx && <div className="Icon" id="IconChan">C</div>}
+        </th>
+        <th id={parseInt(data.id) === idx ? "bold" :""}>
+          {name}
+        </th>
+      </tr>
+      </tbody>);
   });
-  return (<table class="PlayerNames">
+  return (<table className="PlayerNames">
     {rows}
     </table>);
 }
@@ -71,14 +86,14 @@ function Game({match}) {
   return (
     <div>
       <Header code={match.params.roomNum} />
-      <div class="Game">
-        <div class="Game-Left">
+      <div className="Game">
+        <div className="Game-Left">
           <GenerateUserNameTable id="2" prez="0" cha="4" players={players}/>
           <div id="DisplayButton">
             {RoleModal("Evil", "Goose", ["Player1", "Player2"])}
           </div>
         </div>
-        <div class="Game-Right">
+        <div className="Game-Right">
           {GenerateBoard(goodBoard)}
           {GenerateBoard(evilBoard)}
           <GenerateElectionTracker electionNum="2"/>
