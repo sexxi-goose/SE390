@@ -61,17 +61,3 @@ class GameState:
             else:
                 return "fail", self._votes
         return "continue",dict()
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
