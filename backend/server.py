@@ -3,23 +3,14 @@ import json
 import logging
 import socketio
 
+from game_sessions import games
+
 REQUEST_USERID_ROOMID = "SendUseridRoomid"
 RESPONSE_USERID_ROOMID = "UseridRoomid"
 NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
-TEST_ROOM = "test_room"
 
 server = socketio.Server()
 logger = logging.Logger("ServerLogger")
-
-count = 0
-
-def validate_valid_user(user_id, room_id):
-    return True
-
-def get_user_name(user_id):
-    global count
-    count += 1
-    return f"DUMMY {count} ${user_id}"
 
 @server.event
 def connect(sid, environ):
@@ -28,6 +19,13 @@ def connect(sid, environ):
 
     logger.info(f"Received connection from {sid}")
     server.emit(REQUEST_USERID_ROOMID, room=sid)
+
+@server.event
+def disconnect(sid):
+    global logger
+
+    logger.info(f"Received disconnect frmo {sid}")
+    games.user_disconnected(sid)
 
 @server.on(RESPONSE_USERID_ROOMID)
 def handle_handshake(sid, data):
@@ -41,11 +39,11 @@ def handle_handshake(sid, data):
     room_id = data["room_id"]
     user_id = data["user_id"]
 
-    if not validate_valid_user(user_id, room_id):
-        disconnect(sid)
+    logger.info(sid, user_id, room_id)
 
-    server.emit(NEW_USER_JOINED_ROOM, data =
-            {"username": get_user_name(user_id)}, room=TEST_ROOM)
-    server.enter_room(sid, TEST_ROOM)
+    try:
+        games.user_connected(room_id, user_id, sid)
+    except Exception as e:
+        logger.error(f"Failed to connect user to game {room_id} errmsg={e}")
 
 
