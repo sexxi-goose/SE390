@@ -21,13 +21,6 @@ export class LoginForm extends React.Component {
     this.socketConnection = null
   }
 
-  validateRoomID = (event) => {
-    console.log(this.state.roomId);
-    if(this.state.roomId.length > 8){
-      this.state.roomId = this.state.roomId.substring(0, 8);
-    }
-  }
-
   handleChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -57,7 +50,6 @@ export class LoginForm extends React.Component {
   }
 
   handleJoinRoom = (event) => {
-    this.validateRoomID();
     event.preventDefault();
 
     fetch('/join', {
@@ -76,7 +68,6 @@ export class LoginForm extends React.Component {
   }
 
   handleCreateRoom = (event) => {
-    this.validateRoomID();
     event.preventDefault();
     fetch('/create', {
         method: "POST",
@@ -97,42 +88,40 @@ export class LoginForm extends React.Component {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
 
     if(this.state.redirectToGame){
-      return <Redirect to={'/game/'+this.state.roomId} />
+      const redirectUrl = "/game/" + this.state.roomId;
+      return <Redirect to={redirectUrl} />
     }
 
     return (
-      <div>
-        <Header />
-        <form onSubmit={this.handleSubmit} class="center" noValidate >
-          <div class="input">
-            <label>
-              <span>Room ID: </span>
-              <input type="text" name="roomId" placeholder="Enter Room ID" required
-              onChange={this.handleChange} />
-            </label>
-
-            <br/>
-
-            <label>
-              <span>Username: </span>
-              <input type="text" name="username" placeholder="Enter Username" required
-              onChange={this.handleChange} />
-            </label>
-          </div>
+      <form onSubmit={this.handleSubmit} class="center" noValidate >
+        <div class="input">
+          <label>
+            <span>Room ID: </span>
+            <input type="text" name="roomId" placeholder="Enter Room ID" required
+            onChange={this.handleChange} maxlength="8"/>
+          </label>
 
           <br/>
 
-          <div class="submitButtons">
-            <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
-                Create
-            </button>
-            <div class="spacer"></div>
-            <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
-                Join
-            </button>
-          </div>
-        </form>
-      </div>
+          <label>
+            <span>Username: </span>
+            <input type="text" name="username" placeholder="Enter Username" required
+            onChange={this.handleChange} maxlength="10"/>
+          </label>
+        </div>
+
+        <br/>
+
+        <div class="submitButtons">
+          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
+              Create
+          </button>
+          <div class="spacer"></div>
+          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
+              Join
+          </button>
+        </div>
+      </form>
     );
   }
 }
