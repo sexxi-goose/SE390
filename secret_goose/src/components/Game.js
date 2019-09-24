@@ -90,7 +90,7 @@ function Game({match}) {
         <div className="Game-Left">
           <GenerateUserNameTable id="2" prez="0" cha="4" players={players}/>
           <div id="DisplayButton">
-            {RoleModal("Evil", "Goose", ["Player1", "Player2"])}
+            {RoleModal("Evil", "Mr. Goose", ["Player1", "Player2"])}
           </div>
         </div>
         <div className="Game-Right">

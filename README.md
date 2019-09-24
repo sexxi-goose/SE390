@@ -36,3 +36,4 @@ Pixabay License: Free for commercial use, No attribution required
 
 - https://pixabay.com/vectors/poop-shit-wc-2024794/
 - https://pixabay.com/vectors/alphabet-word-images-animal-canada-1293059/
+- https://pixabay.com/vectors/student-teenager-book-learning-147783/
