@@ -1,9 +1,9 @@
 import random
 
 class GameState:
-    def __init__(self, room_id, username):
+    def __init__(self, room_id):
         self._room_id = room_id
-        self._users = [username]
+        self._users = []
         self._num_liberal_passed = 0
         self._num_fascist_passed = 0
         self._election_tracker = 0
