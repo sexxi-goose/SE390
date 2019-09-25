@@ -44,15 +44,15 @@ export class LoginForm extends React.Component {
     this.socketConnection.on(REQUEST_USERID_ROOMID, (data) => {
       this.socketConnection.emit(RESPONSE_USERID_ROOMID, {
         room_id: this.state.roomId,
-        user_id: this.state.username
+        user_id: this.userId
       });
     });
   }
 
-  handleJoinRoom = (event) => {
+  handleJoinRoom = async (event) => {
     event.preventDefault();
 
-    fetch('/join', {
+    const response = await fetch('/join', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -62,14 +62,22 @@ export class LoginForm extends React.Component {
           username: this.state.username
         }),
     });
+
+    const responseJson = await response.json();
+    if (!response.ok) {
+      alert(responseJson["error"]);
+      return;
+    }
+
+    this.userId = responseJson["user_id"]
 
     this.setupWebsocket();
     this.routeToGame();
   }
 
-  handleCreateRoom = (event) => {
+  handleCreateRoom = async (event) => {
     event.preventDefault();
-    fetch('/create', {
+    const response = await fetch('/create', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -79,6 +87,15 @@ export class LoginForm extends React.Component {
           username: this.state.username
         }),
     });
+
+
+    const responseJson = await response.json();
+    if (!response.ok) {
+      alert(responseJson["error"]);
+      return;
+    }
+
+    this.userId = responseJson["user_id"]
 
     this.setupWebsocket();
     this.routeToGame();
@@ -88,7 +105,7 @@ export class LoginForm extends React.Component {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
 
     if(this.state.redirectToGame){
-      const redirectUrl = "/game/" + this.state.roomId;
+      const redirectUrl = "/lobby/" + this.state.roomId;
       return <Redirect to={redirectUrl} />
     }
 
