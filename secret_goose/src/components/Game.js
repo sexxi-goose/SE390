@@ -90,11 +90,7 @@ function Game({match}) {
         <div className="Game-Left">
           <GenerateUserNameTable id="2" prez="0" cha="4" players={players}/>
           <div id="DisplayButton">
-<<<<<<< HEAD
-            {RoleModal("Evil", "Mr. Goose", ["Player1", "Player2"])}
-=======
             {ChooseChancellorModal(["Player1", "Player2", "Player2", "Player2", "Player2", "Player2", "Player2", "Player2"])}
->>>>>>> set up more power ups
           </div>
         </div>
         <div className="Game-Right">
