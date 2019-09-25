@@ -6,7 +6,21 @@ import Geese from '../assets/geese.png';
 import Students from '../assets/students.png';
 
 
-function VoteModal(chancellor, president) {
+function VoteModal(chancellor, userid, president, roomId) {
+    let selection = (eventField, select) => {
+      eventField.preventDefault();
+      fetch('/voteChancellor', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            room_id: roomId,
+            userid: userid,
+            choice: select
+          }),
+      });
+    }
     return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
     {close => (
       <div className="modal">
@@ -16,8 +30,8 @@ function VoteModal(chancellor, president) {
           <p>Chancellor: {chancellor}</p>
         </div>
         <div className="actions">
-          <button className="button" onClick={() => {close();}}> Yes </button>
-          <button className="button" onClick={() => {close();}}> No </button>
+          <button className="button" onClick={(event)=> {selection(event,true); close();}}> Yes </button>
+          <button className="button" onClick={(event)=> {selection(event,false); close();}}> No </button>
         </div>
       </div>
     )}
@@ -25,25 +39,26 @@ function VoteModal(chancellor, president) {
 };
 
 function ChoosePolicyModal(policies) {
-    return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
-    {close => (
-      <div className="modal">
-        <div className="header"> </div>
-        <div className="content"> </div>
-          <ButtonGroup
-      onPress={this.updateIndex}
-      selectedIndex={selectedIndex}
-      buttons={buttons}
-      containerStyle={{height: 100}}
-    />
-        <div className="actions"> </div>
-      </div>
-    )}
-  </Popup>;
+  //   return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
+  //   {close => (
+  //     <div className="modal">
+  //       <div className="header"> </div>
+  //       <div className="content"> </div>
+  //         <ButtonGroup
+  //     onPress={this.updateIndex}
+  //     selectedIndex={selectedIndex}
+  //     buttons={buttons}
+  //     containerStyle={{height: 100}}
+  //   />
+  //       <div className="actions"> </div>
+  //     </div>
+  //   )}
+  // </Popup>;
 };
 
-function RoleModal(team, role, teamMates) {
+function RoleModal(team, role, teamMates, MrGoose) {
     let allys = teamMates != null ? <p> Allys: {teamMates.join(", ")} </p> : <p></p>;
+    let supperRole = MrGoose != null ? <p> MrGoose: {MrGoose} </p> : <p></p>;
     let roleLabel = role != null ? <p> {role}</p> : <p></p>;
     let roleImgName;
     if (role === "Mr. Goose") {
@@ -63,6 +78,7 @@ function RoleModal(team, role, teamMates) {
               src={roleImgName}/>
           </div>
           {allys}
+          {supperRole}
         </div>
         <div className="actions">
           <button className="button" onClick={() => {close();}}> Close </button>
@@ -73,13 +89,25 @@ function RoleModal(team, role, teamMates) {
 };
 
 function ChooseChancellorModal(players) {
+  let selection = (eventField, selectedUser) => {
+    eventField.preventDefault();
+    fetch('/nominateChancellor', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          choice: selectedUser
+        }),
+    });
+  }
   let playerOptions = players.map(p => <option value={p}>{p}</option> )
     return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
     {close => (
       <div className="modal">
         <div className="header"> Select a Chancellor </div>
         <div className="content">
-          <form action="/action_page.php">
+          <form onSubmit={selection}>
             <select name="Chancellor select" size={players.length}>{playerOptions}</select>
             <br></br>
             <input type="submit"></input>
