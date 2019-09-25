@@ -24,12 +24,18 @@ function VoteModal(chancellor, president) {
   </Popup>;
 };
 
-function ChoosePolicyModal() {
+function ChoosePolicyModal(policies) {
     return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
     {close => (
       <div className="modal">
         <div className="header"> </div>
         <div className="content"> </div>
+          <ButtonGroup
+      onPress={this.updateIndex}
+      selectedIndex={selectedIndex}
+      buttons={buttons}
+      containerStyle={{height: 100}}
+    />
         <div className="actions"> </div>
       </div>
     )}
@@ -47,7 +53,7 @@ function RoleModal(team, role, teamMates) {
     } else if (role === "Students") {
       roleImgName = Students;
     }
-    return <Popup trigger={<button className="button"> Open Modal </button>} modal>
+    return <Popup trigger={<button className="button">Your Role</button>} modal>
     {close => (
       <div className="modal">
         <div className="header"> Your Team: {team} </div>
@@ -66,12 +72,19 @@ function RoleModal(team, role, teamMates) {
   </Popup>;
 };
 
-function ChooseChancellorModal() {
+function ChooseChancellorModal(players) {
+  let playerOptions = players.map(p => <option value={p}>{p}</option> )
     return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
     {close => (
       <div className="modal">
-        <div className="header"> </div>
-        <div className="content"> </div>
+        <div className="header"> Select a Chancellor </div>
+        <div className="content">
+          <form action="/action_page.php">
+            <select name="Chancellor select" size={players.length}>{playerOptions}</select>
+            <br></br>
+            <input type="submit"></input>
+          </form>
+        </div>
       </div>
     )}
   </Popup>;
