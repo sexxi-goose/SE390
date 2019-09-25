@@ -53,7 +53,7 @@ class GameState:
             self._num_fascist_passed += 1
 
     def vote(username, vote):
-        self._votes(username) = vote;
+        self._votes[username] = vote;
         if(len(self._votes) == len(self._users)):
             tally = sum([1 for v in self._votes if self._votes[v]=="yes"])
             if(tally > len(users)/2):
