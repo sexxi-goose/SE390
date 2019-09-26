@@ -52,7 +52,6 @@ def handle_handshake(sid, data):
 def handle_handshake(sid, data):
     global server
     global logger
-    global connections
 
     logger.info(f"Game started from {sid}")
     logger.debug(sid, data)
