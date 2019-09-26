@@ -73,7 +73,7 @@ function RoleModal(team, role, teamMates, MrGoose) {
       <div className="modal">
         <div className="header"> Your Team: {team} </div>
         <div className="content">
-          <div class="Card" id={team}>
+          <div className="Card" id={team}>
             <img alt={roleLabel}
               src={roleImgName}/>
           </div>

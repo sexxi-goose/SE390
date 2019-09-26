@@ -15,8 +15,8 @@ function RoomCode(code) {
 function Header(display) {
     return (
         <div id="Top">
-        <div class="roomCode">
-          <RoomCode value={display.code}/>
+        <div className="roomCode">
+          <RoomCode value={display}/>
         </div>
         <h1 id="Title">SecretGOOSE</h1>
         </div>
