@@ -82,7 +82,7 @@ class GameState:
         self._discard_pile.append(card)
 
     def pass_policy(policy):
-        if(policy == 'L'):
+        if policy == 'L':
             self._num_liberal_passed += 1
         else:
             self._num_fascist_passed += 1
