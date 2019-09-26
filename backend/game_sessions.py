@@ -1,5 +1,6 @@
 import logging
 import uuid
+import GameState
 
 NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
 
@@ -7,12 +8,16 @@ class GameSessions:
     class GameSession:
         def __init__(self, room_id):
             self._room_id = room_id
-            self._state = None # Game State
+            self._state = GameState.GameState(room_id, self) # Game State
             self._users = dict() # userid to sid
             self._usernames = dict() # userid to username
             self._sids = set() # Set of session ids of all users conencted
             self._server = None
             self._expiry = None
+
+
+        def start_game():
+            self._state.start_game();
 
 
         def create_user(self, username):
@@ -22,7 +27,7 @@ class GameSessions:
 
             user_id = uuid.uuid4()
             self._usernames[str(user_id)] = username
-
+            self._state.join(user_id, username)
             return user_id
 
 
@@ -43,6 +48,7 @@ class GameSessions:
         def user_disconnected(self, sid):
             for key, val in self._users.items():
                 if val == sid:
+                    self._state.remove(key, self_.users[username])
                     self._users.pop(key)
 
             self._sids.remove(sid)
@@ -87,6 +93,13 @@ class GameSessions:
         self._server = None
         self._sidToRooms = dict()
         self._logger = logging.Logger("GameSessions")
+
+
+    def start_game(sid):
+        if(sid not in self._sidToRooms.keys()):
+            raise RuntimeError("No room to start game in")
+
+        self._game_sessions[self._sidToRooms[sid]].start_game();
 
 
     def room_exists(self, room_id):
