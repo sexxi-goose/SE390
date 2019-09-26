@@ -96,7 +96,7 @@ class GameSessions:
 
 
     def start_game(sid):
-        if(sid not in self._sidToRooms.keys()):
+        if sid not in self._sidToRooms.keys():
             raise RuntimeError("No room to start game in")
 
         self._game_sessions[self._sidToRooms[sid]].start_game();
