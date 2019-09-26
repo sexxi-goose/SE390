@@ -4,6 +4,7 @@ import logging
 import socketio
 
 from game_sessions import games
+from game_events import GAME_EVENT
 
 REQUEST_USERID_ROOMID = "SendUseridRoomid"
 RESPONSE_USERID_ROOMID = "UseridRoomid"
@@ -32,7 +33,6 @@ def disconnect(sid):
 def handle_handshake(sid, data):
     global server
     global logger
-    global connections
 
     logger.info(f"Handshake from {sid}")
     logger.debug(sid, data)
@@ -48,8 +48,8 @@ def handle_handshake(sid, data):
         logger.error(f"Failed to connect user to game {room_id} errmsg={e}")
 
 
-@server.on(RESPONSE_USERID_ROOMID)
-def handle_handshake(sid, data):
+@server.on(REQUEST_GAME_START)
+def handle_game_start(sid, data):
     global server
     global logger
 
@@ -60,4 +60,16 @@ def handle_handshake(sid, data):
         games.start_game(sid)
     except Exception as e:
         logger.error(f"Failed to start game errmsg={e}")
+
+
+@server.on(GAME_EVENT)
+def handle_game_events(sid, data):
+    global server
+    global logger
+
+    try:
+        games.handle_event(sid, data["eventType"], data)
+    except Exception as e:
+        logger.error(f"Failed to handle game event={e}")
+
 
