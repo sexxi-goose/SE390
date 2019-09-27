@@ -20,7 +20,7 @@ app.wsgi_app = socketio.WSGIApp(server.server, app.wsgi_app)
 def main():
     games.set_websocket_server(server.server)
 
-    app.run(host="localhost", port=8000)
+    app.run()
 
 
 if __name__ == "__main__":

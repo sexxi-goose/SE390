@@ -7,7 +7,7 @@ import Header from "./Header";
 const REQUEST_USERID_ROOMID = "SendUseridRoomid"
 const RESPONSE_USERID_ROOMID = "UseridRoomid"
 const NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
-const ENDPOINT = ""
+const ENDPOINT = "api"
 
 export class LoginForm extends React.Component {
   constructor(props) {
@@ -52,7 +52,7 @@ export class LoginForm extends React.Component {
   handleJoinRoom = async (event) => {
     event.preventDefault();
 
-    const response = await fetch('/join', {
+    const response = await fetch('api/join', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ export class LoginForm extends React.Component {
 
   handleCreateRoom = async (event) => {
     event.preventDefault();
-    const response = await fetch('/create', {
+    const response = await fetch('api/create', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -105,7 +105,7 @@ export class LoginForm extends React.Component {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
 
     if(this.state.redirectToGame){
-      const redirectUrl = "/lobby/" + this.state.roomId;
+      const redirectUrl = "lobby/" + this.state.roomId;
       return <Redirect to={redirectUrl} />
     }
 

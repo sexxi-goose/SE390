@@ -19,8 +19,10 @@ function GenerateUserNameTable(data) {
     </table>);
 }
 
-function Lobby({match}) {
+function Lobby(props) {
+    const {match} = props;
   const players = ["Logan", "Jenny", "Roxane", "Chris", "Aman"];
+    console.log(props);
   return (
     <div>
       <Header code={match.params.roomNum} />
@@ -29,7 +31,7 @@ function Lobby({match}) {
           <GenerateUserNameTable id="2" prez="0" cha="4" players={players}/>
         </div>
         <div className="Lobby-Right">
-          <Link to={"/game/" + match.params.roomNum} className="LobbyStartLink" >
+          <Link to={"game/" + match.params.roomNum} className="LobbyStartLink" >
             <div className="LobbyStartButton">
               Start Game
             </div>
