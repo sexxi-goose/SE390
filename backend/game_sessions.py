@@ -1,5 +1,6 @@
 import logging
 import uuid
+import json
 import GameState
 
 NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
@@ -38,9 +39,7 @@ class GameSessions:
             self._users[user_id] = sid
             self._sids.add(sid)
 
-            self.emit(NEW_USER_JOINED_ROOM, {
-                "username": f"{self._usernames[user_id]} joined the room"
-            })
+            self.emit(NEW_USER_JOINED_ROOM, json.dumps(self._users))
 
             self._server.enter_room(sid, self._room_id)
 
