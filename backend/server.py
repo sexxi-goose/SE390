@@ -8,7 +8,6 @@ from game_events import GAME_EVENT
 
 REQUEST_USERID_ROOMID = "SendUseridRoomid"
 RESPONSE_USERID_ROOMID = "UseridRoomid"
-NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
 REQUEST_GAME_START = "StartGame"
 
 server = socketio.Server()
