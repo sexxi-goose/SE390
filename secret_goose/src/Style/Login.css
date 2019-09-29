@@ -2,9 +2,7 @@
   display: flex;
   flex-flow: row;
   width: 48vh;
-  justify-content:flex-end;
-  flex-grow: 1;
-
+  justify-content:center;
 }
 
 .input {
@@ -17,15 +15,39 @@
     text-align: right
 }
 
-
-.spacer{
-  flex-grow:2;
+.button{
+  border: 1px solid black;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+  width: 100px;
+  background-color: white;
 }
 
+.button:hover {
+  background-color: black;
+  color: white;
+}
+
+input{
+  border: 1px solid black;
+}
+
+.center{
+  text-align: center;
+}
+
+.roomid{
+  padding-right: 1px;
+}
+
+input{
+  padding-left: 5px;
+}
 
 .loginForm {
   display: flex;
   flex-flow: column;
-  margin-top: 70px;
   align-items: center;
 }
