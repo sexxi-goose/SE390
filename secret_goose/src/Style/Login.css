@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: row;
   width: 48vh;
-  justify-content:flex-end;
+  justify-content:center;
 }
 
 .input {
@@ -15,18 +15,26 @@
     text-align: right
 }
 
-button {
-  flex-grow: 1;
-}
-
-.spacer{
-  flex-grow:2;
-}
-
-
 form {
   display: flex;
   flex-flow: column;
-  margin-top: 70px;
   align-items: center;
+}
+
+.button{
+  border: 1px solid black;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+  width: 30%;
+  background-color: white;
+}
+
+input{
+  border: 1px solid black;
+}
+
+.center{
+  text-align: center;
 }

@@ -2,12 +2,20 @@ import React from 'react';
 import './../Style/Login.css';
 import { Redirect } from 'react-router-dom'
 import socketIOClient from 'socket.io-client'
-import Header from "./Header";
 
 const REQUEST_USERID_ROOMID = "SendUseridRoomid"
 const RESPONSE_USERID_ROOMID = "UseridRoomid"
 const NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
 const ENDPOINT = ""
+
+
+function Header(display) {
+    return (
+        <div id="TopTitle" class="center">
+        <h1 id="LoginTitle">SecretGOOSE</h1>
+        </div>
+    );
+}
 
 export class LoginForm extends React.Component {
   constructor(props) {
@@ -101,6 +109,7 @@ export class LoginForm extends React.Component {
     this.routeToGame();
   }
 
+
   render() {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
 
@@ -110,6 +119,8 @@ export class LoginForm extends React.Component {
     }
 
     return (
+      <div>
+      <Header></Header>
       <form onSubmit={this.handleSubmit} class="center" noValidate >
         <div class="input">
           <label>
@@ -130,15 +141,16 @@ export class LoginForm extends React.Component {
         <br/>
 
         <div class="submitButtons">
-          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
+          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom} class="button">
               Create
           </button>
           <div class="spacer"></div>
-          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
+          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom} class="button">
               Join
           </button>
         </div>
       </form>
+      </div>
     );
   }
 }
