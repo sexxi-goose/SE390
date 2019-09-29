@@ -11,7 +11,7 @@ const ENDPOINT = ""
 
 function Header(display) {
     return (
-        <div id="TopTitle" class="center">
+        <div id="TopTitle" className="center">
         <h1 id="LoginTitle">SecretGOOSE</h1>
         </div>
     );
@@ -121,12 +121,12 @@ export class LoginForm extends React.Component {
     return (
       <div>
       <Header></Header>
-      <form onSubmit={this.handleSubmit} class="center" noValidate >
-        <div class="input">
+      <form onSubmit={this.handleSubmit} className="center" noValidate >
+        <div className="input">
           <label>
-            <span class="roomid">Room ID: </span>
+            <span className="roomid">Room ID: </span>
             <input type="text" name="roomId" placeholder="Enter Room ID" required
-            onChange={this.handleChange} maxlength="8"/>
+            onChange={this.handleChange} maxLength="8"/>
           </label>
 
           <br/>
@@ -134,18 +134,18 @@ export class LoginForm extends React.Component {
           <label>
             <span>Username: </span>
             <input type="text" name="username" placeholder="Enter Username" required
-            onChange={this.handleChange} maxlength="10"/>
+            onChange={this.handleChange} maxLength="10"/>
           </label>
         </div>
 
         <br/>
 
-        <div class="submitButtons">
-          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom} class="button">
+        <div className="submitButtons">
+          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom} className="button">
               Create
           </button>
-          <div class="spacer"></div>
-          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom} class="button">
+          <div className="spacer"></div>
+          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom} className="button">
               Join
           </button>
         </div>
