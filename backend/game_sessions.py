@@ -2,6 +2,7 @@ import logging
 import uuid
 import json
 import GameState
+import game_events
 
 NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
 
@@ -75,7 +76,34 @@ class GameSessions:
 
 
         def handle_event(self, sid, event, data):
-            pass
+            origin_user = None
+            
+            for key, val in self._users.items():
+                if val == sid:
+                    origin_user = key
+            if origin_user == None :
+                raise RuntimeError(f"No user with sid {sid}  exists in room {self._room_id}")
+
+            if event == game_events.START_GAME :
+                self._state.start_game()
+            elif event == game_events.NOMINATED_CHANCELLOR :
+                nomination = data["user_id"] 
+                self._state.nominate(origin_user, nomination)
+            elif event == game_events.VOTE_FOR_CHANCELLOR :
+                vote = data["vote"] 
+                self._state.vote(origin_user, vote)
+            elif event == game_events.PRESIDENT_POLICIES :
+                discard_index = data["card"]
+                self._state.president_discard(discard_index)
+            elif event == game_events.CHANCELLOR_POLICY :
+                play_index = data["card"]
+                self._state.chancellor_play(play_index)
+            elif event == game_events.RESPONSE_KILL :
+                victim = data["user_id"]
+                self._state.kill(victim)
+            else:
+                raise RuntimeError(f"invalid event {event}")
+
 
         @property
         def users(self):
