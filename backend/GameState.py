@@ -31,7 +31,7 @@ class GameState:
         if(user_id in self._users or len(self._users)>=6 or self._game_in_progress):
             return False
         self._users +=[user_id]
-        self._session.emit(NEW_USER_JOINED_ROOM, json.dumps(self._session.users))
+        self._session.emit(NEW_USER_JOINED_ROOM, json.dumps(self._session._users))
         return True
 
     def next_pres():
