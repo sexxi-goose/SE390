@@ -27,7 +27,7 @@ form {
   padding: 10px;
   text-align: center;
   margin: 10px;
-  width: 30%;
+  width: 100px;
   background-color: white;
 }
 
@@ -37,4 +37,8 @@ input{
 
 .center{
   text-align: center;
+}
+
+.roomid{
+  padding-right: 11px;
 }
