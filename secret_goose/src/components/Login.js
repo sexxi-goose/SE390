@@ -2,12 +2,20 @@ import React from 'react';
 import './../Style/Login.css';
 import { Redirect } from 'react-router-dom'
 import socketIOClient from 'socket.io-client'
-import Header from "./Header";
 
 const REQUEST_USERID_ROOMID = "SendUseridRoomid"
 const RESPONSE_USERID_ROOMID = "UseridRoomid"
 const NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
 const ENDPOINT = "api"
+
+
+function Header(display) {
+    return (
+        <div id="TopTitle" className="center">
+        <h1 id="LoginTitle">SecretGOOSE</h1>
+        </div>
+    );
+}
 
 export class LoginForm extends React.Component {
   constructor(props) {
@@ -101,6 +109,7 @@ export class LoginForm extends React.Component {
     this.routeToGame();
   }
 
+
   render() {
     const isEnabled = this.state.roomId.length > 0 && this.state.username.length > 0;
 
@@ -110,35 +119,38 @@ export class LoginForm extends React.Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit} class="loginForm" noValidate >
-        <div class="input">
-          <label>
-            <span>Room ID: </span>
-            <input type="text" name="roomId" placeholder="Enter Room ID" required
-            onChange={this.handleChange} maxlength="8"/>
-          </label>
+      <div>
+      <Header></Header>
+        <form onSubmit={this.handleSubmit} className="center loginForm" noValidate >
+          <div className="input">
+            <label>
+              <span className="roomid">Room ID: </span>
+              <input type="text" name="roomId" placeholder="Enter Room ID" required
+              onChange={this.handleChange} maxLength="8"/>
+            </label>
+
+            <br/>
+
+            <label>
+              <span>Username: </span>
+              <input type="text" name="username" placeholder="Enter Username" required
+              onChange={this.handleChange} maxLength="10"/>
+            </label>
+          </div>
 
           <br/>
 
-          <label>
-            <span>Username: </span>
-            <input type="text" name="username" placeholder="Enter Username" required
-            onChange={this.handleChange} maxlength="10"/>
-          </label>
-        </div>
-
-        <br/>
-
-        <div class="submitButtons">
-          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom}>
-              Create
-          </button>
-          <div class="spacer"></div>
-          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom}>
-              Join
-          </button>
-        </div>
-      </form>
+          <div className="submitButtons">
+            <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom} className="button">
+                Create
+            </button>
+            <div className="spacer"></div>
+            <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom} className="button">
+                Join
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
