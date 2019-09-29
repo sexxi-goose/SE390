@@ -7,6 +7,7 @@ USER_ROLE_INFORMATION = "UserRoleInfo"
 GEESE_ROLE_INFORMATION = "GeeseRoleInfo"
 RESPONSE_GAME_START = "GameStarted"
 PRESIDENT_SELECTED = "PresidentSelected"
+NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
 
 class GameState:
     def __init__(self, room_id, session):
@@ -30,6 +31,7 @@ class GameState:
         if(user_id in self._users or len(self._users)>=6 or self._game_in_progress):
             return False
         self._users +=[user_id]
+        self._session.emit(NEW_USER_JOINED_ROOM, json.dumps({"NumPeople" : len(self._users)}))
         return True
 
     def next_pres():
