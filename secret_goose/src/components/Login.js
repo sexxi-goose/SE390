@@ -125,7 +125,7 @@ export class LoginForm extends React.Component {
         <div class="input">
           <label>
             <span class="roomid">Room ID: </span>
-            <input type="text" name="roomId" placeholder="  Enter Room ID" required
+            <input type="text" name="roomId" placeholder="Enter Room ID" required
             onChange={this.handleChange} maxlength="8"/>
           </label>
 
@@ -133,7 +133,7 @@ export class LoginForm extends React.Component {
 
           <label>
             <span>Username: </span>
-            <input type="text" name="username" placeholder="  Enter Username" required
+            <input type="text" name="username" placeholder="Enter Username" required
             onChange={this.handleChange} maxlength="10"/>
           </label>
         </div>

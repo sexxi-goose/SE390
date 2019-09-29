@@ -31,11 +31,6 @@ form {
   background-color: white;
 }
 
-.button:hover {
-  background-color: black;
-  color: white;
-}
-
 input{
   border: 1px solid black;
 }
@@ -45,5 +40,9 @@ input{
 }
 
 .roomid{
-  padding-right: 11px;
+  padding-right: 1px;
+}
+
+input{
+  padding-left: 5px;
 }
