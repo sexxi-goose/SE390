@@ -2,7 +2,6 @@ import React from 'react';
 import './../Style/Login.css';
 import { Redirect } from 'react-router-dom'
 import {Socket} from './Socket'
-import Header from "./Header";
 
 
 
