@@ -3,40 +3,6 @@ import './../Style/Lobby.css';
 import Header from "./Header";
 import {Redirect} from "react-router-dom";
 
-// var redirect = false;
-
-
-
-// function handleRedirect(){
-//   redirect = true;
-// }
-//
-// function Lobby({match}) {
-//   const players = ["Logan", "Jenny", "Roxane", "Chris", "Aman"];
-//
-//   if(redirect===true){
-//     console.log("redirect");
-//     return (<Redirect to={"/game/" + match.params.roomNum} />);
-//   }
-//
-//   return (
-//     <div>
-//      {Header(match.params.roomNum)}
-//       <div className="Lobby">
-//         <div className="Lobby-Left">
-//           <GenerateUserNameTable id="2" prez="0" cha="4" players={players}/>
-//         </div>
-//         <div className="Lobby-Right">
-//           <button  className="LobbyStartButton button" onClick={handleRedirect} >
-//               Start Game
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
 export class Lobby extends React.Component {
   constructor(props) {
     super(props);
