@@ -51,7 +51,6 @@ export class Lobby extends React.Component {
 
   routeToGame = () => {
     this.setState({redirectToGame:true});
-    console.log(this.state.redirectToGame);
   }
 
 
