@@ -110,7 +110,7 @@ export class LoginForm extends React.Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit} class="center" noValidate >
+      <form onSubmit={this.handleSubmit} class="loginForm" noValidate >
         <div class="input">
           <label>
             <span>Room ID: </span>

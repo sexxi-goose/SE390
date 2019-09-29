@@ -1,17 +1,18 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import App from "./components/App";
-import Game from "./components/Game";
+import {GameRoom} from "./components/Game";
 import Lobby from "./components/Lobby";
-// import Header from "../header";
+import {LoginForm} from './components/Login.js';
 
 class ReactRouter extends React.Component {
   render() {
+    const login = new LoginForm();
+
     return (
       <React.Fragment>
-        <Route  path="lobby/:roomNum" component={Lobby} />
-        <Route  path="game/:roomNum" component={Game} />
-        <Route  path="" component={App} />
+        <Route path="lobby/:roomNum" component={Lobby} />
+        <Route path="game/:roomNum" component={Game} />
+        <Route path="" component={LoginForm} />
       </React.Fragment>
     );
   }
