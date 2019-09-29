@@ -33,3 +33,18 @@
     margin: 20px;
     width: 50%;
 }
+
+.button{
+  border: 1px solid black;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+  width: 100px;
+  background-color: white;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
+}

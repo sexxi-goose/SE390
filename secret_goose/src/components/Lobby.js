@@ -1,43 +1,83 @@
 import React from 'react';
 import './../Style/Lobby.css';
 import Header from "./Header";
-import {Link} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
-function GenerateUserNameTable(data) {
-  const rows = data.players.map(function(name,idx) {
+export class Lobby extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirectToGame: false,
+      roomNum: props.match.params.roomNum,
+      userId: props.userId,
+      players: ["Logan", "Jenny", "Roxane", "Chris", "Aman"]
+
+    };
+
+    this.socketConnection = null
+    // const
+
+  }
+
+  rowsRendering = (data) => {
     return (
-      <tbody key={idx}>
-        <tr>
-        <th id={parseInt(data.id) === idx ? "bold" :""}>
-          {name}
-        </th>
-      </tr>
-      </tbody>);
-  });
-  return (<table className="LobbyPlayerNames">
-    {rows}
-    </table>);
-}
+      <table className="LobbyPlayerNames">
+        {
+          this.state.players.map(function(name,idx) {
+            return (
+              <tbody key={idx}>
+                <tr>
+                <th id={parseInt(data.id) === idx ? "bold" :""}>
+                  {name}
+                </th>
+              </tr>
+              </tbody>
+            );
+          })
+        }
+      </table>
+    );
+  }
 
-function Lobby({match}) {
-  const players = ["Logan", "Jenny", "Roxane", "Chris", "Aman"];
-  return (
-    <div>
-     {Header(match.params.roomNum)}
-      <div className="Lobby">
-        <div className="Lobby-Left">
-          <GenerateUserNameTable id="2" prez="0" cha="4" players={players}/>
-        </div>
-        <div className="Lobby-Right">
-          <Link to={"/game/" + match.params.roomNum} className="LobbyStartLink" >
-            <div className="LobbyStartButton">
-              Start Game
-            </div>
-          </Link>
+  handleChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  routeToGame = () => {
+    this.setState({redirectToGame:true});
+  }
+
+
+  render() {
+
+    if(this.state.redirectToGame === true){
+
+      const redirectUrl = "/game/" + this.state.roomNum;
+      return (<Redirect to={redirectUrl} />);
+    }
+
+    return (
+      <div>
+        {Header(this.state.roomNum)}
+        <div className="Lobby">
+          <div className="Lobby-Left">
+            {this.rowsRendering({id:"2", prez:"0", cha:"4" })}
+          </div>
+          <div className="Lobby-Right">
+            <button  className="LobbyStartButton button" onClick={this.routeToGame} >
+                Start Game
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Lobby;
