@@ -1,0 +1,73 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ANNOUNCE_WINNER	game_events.py	/^ANNOUNCE_WINNER = "Winner" # Backend -> Frontend; "Good or Bad"$/;"	v
+BROADCAST_KILL	game_events.py	/^BROADCAST_KILL = "Killed" # Backend -> Frontend; userid of the killed player$/;"	v
+CHANCELLOR_POLICY	game_events.py	/^CHANCELLOR_POLICY = "ChancellorsChoice" # Frontend -> Backend; good\/bad$/;"	v
+CHANCELLOR_POLICY_OPTIONS	game_events.py	/^CHANCELLOR_POLICY_OPTIONS = "ChancellorPolicyOptions" # Backend -> Frontend; good\/bad policy count of selected policies$/;"	v
+ELECTED_CHANCELLOR	game_events.py	/^ELECTED_CHANCELLOR = "ElectedChancellor" # Backend -> Frontend; userid of the chancellor$/;"	v
+GameSession	game_sessions.py	/^    class GameSession:$/;"	c	class:GameSessions
+GameSessions	game_sessions.py	/^class GameSessions:$/;"	c
+GameState	GameState.py	/^class GameState:$/;"	c
+NEW_PRESIDENT	game_events.py	/^NEW_PRESIDENT = "President" # Backend -> Frontend; userid of the president, govtFailCount$/;"	v
+NEW_USER_JOINED_ROOM	game_sessions.py	/^NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"$/;"	v
+NEW_USER_JOINED_ROOM	server.py	/^NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"$/;"	v
+NEXT_TURN_POLICIES	game_events.py	/^NEXT_TURN_POLICIES = "BadGuyBonus3" # Backend -> Frontend; good\/bad policy count$/;"	v
+NOMINATED_CHANCELLOR	game_events.py	/^NOMINATED_CHANCELLOR = "NominatedChancellor" # Frontend -> Backend; userid of the chancellor$/;"	v
+PRESIDENT_POLICIES	game_events.py	/^PRESIDENT_POLICIES = "PresidentsChoice" # Frontend -> Backend; good\/bad policy count of selected policies$/;"	v
+PRESIDENT_POLICIES_OPTIONS	game_events.py	/^PRESIDENT_POLICIES_OPTIONS = "PresidentPolicyOptions" # Backend -> Frontend; good\/bad policy count$/;"	v
+REQUEST_KILL	game_events.py	/^REQUEST_KILL = "BadGuyBonus45" # Backend->Frontend; $/;"	v
+REQUEST_USERID_ROOMID	server.py	/^REQUEST_USERID_ROOMID = "SendUseridRoomid"$/;"	v
+RESPONSE_KILL	game_events.py	/^RESPONSE_KILL = "Kill" # Frontend -> Backend; userid of the killed player$/;"	v
+RESPONSE_USERID_ROOMID	server.py	/^RESPONSE_USERID_ROOMID = "UseridRoomid"$/;"	v
+START_GAME	game_events.py	/^START_GAME = "StartGame" # Frontend -> Backend$/;"	v
+START_GAME_RESPONSE	game_events.py	/^START_GAME_RESPONSE = "StartGameInfo" # Backend -> Frontend; username->userid mapping$/;"	v
+VOTE_CHANCELLOR	game_events.py	/^VOTE_CHANCELLOR = "VoteChancellor" # Backend -> Frontend; userid of the chancellor in case voting is required.$/;"	v
+__init__	GameState.py	/^    def __init__(self, room_id):$/;"	m	class:GameState
+__init__	game_sessions.py	/^        def __init__(self, room_id):$/;"	m	class:GameSessions.GameSession
+__init__	game_sessions.py	/^    def __init__(self):$/;"	m	class:GameSessions
+all_events	game_events.py	/^all_events = [$/;"	v
+app	main.py	/^app = Flask($/;"	v
+assign_geese	GameState.py	/^    def assign_geese():$/;"	m	class:GameState
+connect	server.py	/^def connect(sid, environ):$/;"	f
+create_new_session	game_sessions.py	/^    def create_new_session(self, room_id):$/;"	m	class:GameSessions
+create_room	homepage.py	/^def create_room():$/;"	f
+create_user	game_sessions.py	/^        def create_user(self, username):$/;"	m	class:GameSessions.GameSession
+create_user	game_sessions.py	/^    def create_user(self, room_id, username):$/;"	m	class:GameSessions
+discard	GameState.py	/^    def discard(card):$/;"	m	class:GameState
+disconnect	server.py	/^def disconnect(sid):$/;"	f
+draw	GameState.py	/^    def draw(n=3):$/;"	m	class:GameState
+emit	game_sessions.py	/^        def emit(self, event, data):$/;"	m	class:GameSessions.GameSession
+emit_to_user	game_sessions.py	/^        def emit_to_user(self, user_id, event, data):$/;"	m	class:GameSessions.GameSession
+emit_to_users	game_sessions.py	/^        def emit_to_users(self, user_ids, event, data):$/;"	m	class:GameSessions.GameSession
+game_endpoint	game_api.py	/^game_endpoint = Blueprint("game", __name__, url_prefix="\/game")$/;"	v
+games	game_sessions.py	/^games = GameSessions()$/;"	v
+get_session_state	game_sessions.py	/^    def get_session_state(self, room_id):$/;"	m	class:GameSessions
+handle_event	game_sessions.py	/^        def handle_event(self, sid, event, data):$/;"	m	class:GameSessions.GameSession
+handle_event	game_sessions.py	/^    def handle_event(self, sid, event, data):$/;"	m	class:GameSessions
+handle_game_events	server.py	/^def handle_game_events(sid, data):$/;"	f
+handle_handshake	server.py	/^def handle_handshake(sid, data):$/;"	f
+home_endpoint	homepage.py	/^home_endpoint = Blueprint("home_endpoint", __name__, url_prefix="")$/;"	v
+join	GameState.py	/^    def join(username):$/;"	m	class:GameState
+join_room	homepage.py	/^def join_room():$/;"	f
+logger	homepage.py	/^logger = logging.Logger("homepage_endpoint")$/;"	v
+logger	server.py	/^logger = logging.Logger("ServerLogger")$/;"	v
+main	main.py	/^def main():$/;"	f
+nominateChancellor	game_api.py	/^def nominateChancellor():$/;"	f
+pass_policy	GameState.py	/^    def pass_policy(policy):$/;"	m	class:GameState
+room_exists	game_sessions.py	/^    def room_exists(self, room_id):$/;"	m	class:GameSessions
+server	server.py	/^server = socketio.Server()$/;"	v
+set_websocket_server	game_sessions.py	/^        def set_websocket_server(self, server):$/;"	m	class:GameSessions.GameSession
+set_websocket_server	game_sessions.py	/^    def set_websocket_server(self, server):$/;"	m	class:GameSessions
+start_game	GameState.py	/^    def start_game():$/;"	m	class:GameState
+state	game_sessions.py	/^        def state(self):$/;"	m	class:GameSessions.GameSession
+user_connected	game_sessions.py	/^        def user_connected(self, user_id,  sid):$/;"	m	class:GameSessions.GameSession
+user_connected	game_sessions.py	/^    def user_connected(self, room_id, user_id, sid):$/;"	m	class:GameSessions
+user_disconnected	game_sessions.py	/^        def user_disconnected(self, sid):$/;"	m	class:GameSessions.GameSession
+user_disconnected	game_sessions.py	/^    def user_disconnected(self, sid):$/;"	m	class:GameSessions
+users	game_sessions.py	/^        def users(self):$/;"	m	class:GameSessions.GameSession
+vote	GameState.py	/^    def vote(username, vote):$/;"	m	class:GameState
+voteChancellor	game_api.py	/^def voteChancellor():$/;"	f
