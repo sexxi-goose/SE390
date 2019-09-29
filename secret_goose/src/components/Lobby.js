@@ -57,7 +57,6 @@ export class Lobby extends React.Component {
   render() {
 
     if(this.state.redirectToGame === true){
-      console.log("redirect");
 
       const redirectUrl = "/game/" + this.state.roomNum;
       return (<Redirect to={redirectUrl} />);
