@@ -3,6 +3,8 @@
   flex-flow: row;
   width: 48vh;
   justify-content:flex-end;
+  flex-grow: 1;
+
 }
 
 .input {
@@ -15,16 +17,13 @@
     text-align: right
 }
 
-button {
-  flex-grow: 1;
-}
 
 .spacer{
   flex-grow:2;
 }
 
 
-form {
+.loginForm {
   display: flex;
   flex-flow: column;
   margin-top: 70px;
