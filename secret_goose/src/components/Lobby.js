@@ -23,7 +23,7 @@ function Lobby({match}) {
   const players = ["Logan", "Jenny", "Roxane", "Chris", "Aman"];
   return (
     <div>
-      <Header code={match.params.roomNum} />
+     {Header(match.params.roomNum)}
       <div className="Lobby">
         <div className="Lobby-Left">
           <GenerateUserNameTable id="2" prez="0" cha="4" players={players}/>

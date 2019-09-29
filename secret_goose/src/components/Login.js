@@ -121,35 +121,35 @@ export class LoginForm extends React.Component {
     return (
       <div>
       <Header></Header>
-      <form onSubmit={this.handleSubmit} className="center" noValidate >
-        <div className="input">
-          <label>
-            <span className="roomid">Room ID: </span>
-            <input type="text" name="roomId" placeholder="Enter Room ID" required
-            onChange={this.handleChange} maxLength="8"/>
-          </label>
+        <form onSubmit={this.handleSubmit} className="center loginForm" noValidate >
+          <div className="input">
+            <label>
+              <span className="roomid">Room ID: </span>
+              <input type="text" name="roomId" placeholder="Enter Room ID" required
+              onChange={this.handleChange} maxLength="8"/>
+            </label>
+
+            <br/>
+
+            <label>
+              <span>Username: </span>
+              <input type="text" name="username" placeholder="Enter Username" required
+              onChange={this.handleChange} maxLength="10"/>
+            </label>
+          </div>
 
           <br/>
 
-          <label>
-            <span>Username: </span>
-            <input type="text" name="username" placeholder="Enter Username" required
-            onChange={this.handleChange} maxLength="10"/>
-          </label>
-        </div>
-
-        <br/>
-
-        <div className="submitButtons">
-          <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom} className="button">
-              Create
-          </button>
-          <div className="spacer"></div>
-          <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom} className="button">
-              Join
-          </button>
-        </div>
-      </form>
+          <div className="submitButtons">
+            <button disabled={!isEnabled} type="submit" value="Create" onClick={this.handleCreateRoom} className="button">
+                Create
+            </button>
+            <div className="spacer"></div>
+            <button disabled={!isEnabled} type="submit" value="Join" onClick={this.handleJoinRoom} className="button">
+                Join
+            </button>
+          </div>
+        </form>
       </div>
     );
   }
