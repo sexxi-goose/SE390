@@ -21,7 +21,7 @@ $ npm install
 2. Run the backend in first
 ``` sh
 $ cd $PROJECT_ROOT/backend
-$ python3 main.py
+$ gunicorn -b :8000 main:app
 ```
 3. Run the frontend in the other
 ```sh
