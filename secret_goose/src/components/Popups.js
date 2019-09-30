@@ -37,7 +37,7 @@ function VoteModal(chancellor, userid, president, roomId) {
 };
 
 function ChoosePolicyModal(policies, who) {
-  policies=["L", "L", "F"];
+  policies=["L", "F"];
 
   let selection = (eventField, select) => {
     eventField.preventDefault();
@@ -49,7 +49,7 @@ function ChoosePolicyModal(policies, who) {
 
   //return index "card" to be discarded
   return(
-    <Popup trigger={<button className="button"> Open Modal </button>} modal>
+    <Popup trigger={<button className="button"> Check Role </button>} modal>
       {close => (
         <div className="modal">
           <div className="header"> Choose a card to discard: </div>
@@ -78,7 +78,7 @@ function ChoosePolicyModal(policies, who) {
 };
 
 function RoleModal(team, role, teamMates, MrGoose) {
-    let allys = teamMates != null ? <p> Allys: {teamMates.join(", ")} </p> : <p></p>;
+    let allys = teamMates != null ? <p> Ally: {teamMates.join(", ")} </p> : <p></p>;
     let supperRole = MrGoose != null ? <p> MrGoose: {MrGoose} </p> : <p></p>;
     let roleLabel = role != null ? <p> {role}</p> : <p></p>;
     let roleImgName;
@@ -127,7 +127,7 @@ function ChooseChancellorModal(players) {
           <form onSubmit={selection}>
             <select name="Chancellor select" size={players.length}>{playerOptions}</select>
             <br></br>
-            <input type="submit"></input>
+            <button type="submit" className="button">Submit</button>
           </form>
         </div>
       </div>

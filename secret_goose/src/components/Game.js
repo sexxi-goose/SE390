@@ -84,16 +84,16 @@ render() {
   const goodBoard = {
       title: "Good Policies",
       policies: ["","","","","",""],
-      totalPoliciesPassed: 2
+      totalPoliciesPassed: 1
   };
 
   const evilBoard =  {
       title: "Evil Policies",
       policies: ["","","","See policy deck","Pass midterms","Pass finals"],
-      totalPoliciesPassed: 3
+      totalPoliciesPassed: 0
   };
 
-  let nameTable = {id:"2", prez:"0", cha:"4", players:players};
+  let nameTable = {id:"3", prez:"0", cha:"3", players:players};
 
   return (
     <div>
@@ -102,13 +102,13 @@ render() {
         <div className="Game-Left">
           {this.GenerateUserNameTable (nameTable)}
           <div id="DisplayButton">
-            {ChoosePolicyModal(this.state.roomNum,"Good" , ["hi"], this.state.userId)}
+            {ChoosePolicyModal(["Jenny", "Roxane", "Chris", "Aman"], "temp")}
           </div>
         </div>
         <div className="Game-Right">
           {this.GenerateBoard(goodBoard)}
           {this.GenerateBoard(evilBoard)}
-          {this.GenerateElectionTracker ({electionNum:"2"})}
+          {this.GenerateElectionTracker ({electionNum:"0"})}
         </div>
       </div>
     </div>

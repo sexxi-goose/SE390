@@ -69,7 +69,7 @@ export class Lobby extends React.Component {
         {Header(this.state.roomNum)}
         <div className="Lobby">
           <div className="Lobby-Left">
-            {this.rowsRendering({id:"2", prez:"0", cha:"4" })}
+            {this.rowsRendering({id:"1", prez:"0", cha:"4" })}
           </div>
           <div className="Lobby-Right">
             <button  className="LobbyStartButton button" onClick={this.routeToGame} >
