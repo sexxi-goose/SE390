@@ -1,4 +1,5 @@
 import socketIOClient from 'socket.io-client'
+import {userid} from "./Login.js";
 
 //Login
 const REQUEST_USERID_ROOMID = "SendUseridRoomid";
@@ -45,6 +46,7 @@ export class Socket {
 
   sendEvent(event, data){
     data["eventType"] = event;
+    data["sid"] = userid;
     this.socketConnection.emit(GAME_EVENT, data);
   }
 }

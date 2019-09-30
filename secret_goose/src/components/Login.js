@@ -7,7 +7,7 @@ import {Socket} from './Socket'
 
 
 let socketConnection = null;
-
+let userid = null;
 
 
 function Header(display) {
@@ -38,7 +38,7 @@ export class LoginForm extends React.Component {
     socketConnection.addResponse(socketConnection.REQUEST_USERID_ROOMID, (data) => {
       socketConnection.sendEvent(socketConnection.RESPONSE_USERID_ROOMID, {
         room_id: this.state.roomId,
-        user_id: this.userId
+        user_id: userid
       });
     });
   }
@@ -79,7 +79,7 @@ export class LoginForm extends React.Component {
       return;
     }
 
-    this.userId = responseJson["user_id"]
+    userid = responseJson["user_id"]
 
     this.routeToGame();
   }
@@ -104,7 +104,7 @@ export class LoginForm extends React.Component {
       return;
     }
 
-    this.userId = responseJson["user_id"]
+    userid = responseJson["user_id"]
 
     this.routeToGame();
   }
@@ -156,3 +156,4 @@ export class LoginForm extends React.Component {
 }
 
 export {socketConnection};
+export {userid};
