@@ -1,12 +1,9 @@
 import React from 'react';
 import './../Style/Login.css';
 import { Redirect } from 'react-router-dom'
-import socketIOClient from 'socket.io-client'
+import {Socket} from './Socket'
 
-const REQUEST_USERID_ROOMID = "SendUseridRoomid"
-const RESPONSE_USERID_ROOMID = "UseridRoomid"
-const NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
-const ENDPOINT = ""
+
 
 
 function Header(display) {
@@ -26,7 +23,16 @@ export class LoginForm extends React.Component {
       redirectToGame: false
     };
 
-    this.socketConnection = null
+    this.socketConnection = new Socket();
+    this.socketConnection.addResponse(this.socketConnection.NEW_USER_JOINED_ROOM, data => {
+      console.log(data["username"] + " joined the room");
+    });
+    this.socketConnection.addResponse(this.socketConnection.REQUEST_USERID_ROOMID, (data) => {
+      this.socketConnection.sendEvent(this.socketConnection.RESPONSE_USERID_ROOMID, {
+        room_id: this.state.roomId,
+        user_id: this.userId
+      });
+    });
   }
 
   handleChange = (event) => {
@@ -41,20 +47,6 @@ export class LoginForm extends React.Component {
 
   routeToGame = () => {
     this.setState({redirectToGame:true})
-  }
-
-  setupWebsocket = () => {
-    this.socketConnection = socketIOClient(ENDPOINT);
-    this.socketConnection.on(NEW_USER_JOINED_ROOM, data => {
-      console.log(data["username"] + " joined the room");
-    });
-
-    this.socketConnection.on(REQUEST_USERID_ROOMID, (data) => {
-      this.socketConnection.emit(RESPONSE_USERID_ROOMID, {
-        room_id: this.state.roomId,
-        user_id: this.userId
-      });
-    });
   }
 
   handleJoinRoom = async (event) => {
@@ -79,7 +71,6 @@ export class LoginForm extends React.Component {
 
     this.userId = responseJson["user_id"]
 
-    this.setupWebsocket();
     this.routeToGame();
   }
 
@@ -105,7 +96,6 @@ export class LoginForm extends React.Component {
 
     this.userId = responseJson["user_id"]
 
-    this.setupWebsocket();
     this.routeToGame();
   }
 
