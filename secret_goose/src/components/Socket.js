@@ -31,7 +31,7 @@ const RESPONSE_KILL = "Kill" // Frontend -> Backend; userid of the killed player
 const BROADCAST_KILL = "Killed" // Backend -> Frontend; userid of the killed player
 
 const ANNOUNCE_WINNER = "Winner" // Backend -> Frontend; "Good or Bad"
-const ENDPOINT = "";
+const ENDPOINT = "http://secret-goose.herokuapp.com";
 
 export class Socket {
   constructor(props) {

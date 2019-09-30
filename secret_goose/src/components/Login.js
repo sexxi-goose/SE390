@@ -62,7 +62,7 @@ export class LoginForm extends React.Component {
   handleJoinRoom = async (event) => {
     event.preventDefault();
 
-    const response = await fetch('/join', {
+    const response = await fetch(socketConnection.ENDPOINT + '/join', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ export class LoginForm extends React.Component {
 
   handleCreateRoom = async (event) => {
     event.preventDefault();
-    const response = await fetch('/create', {
+    const response = await fetch(socketConnection.ENDPOINT + '/create', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

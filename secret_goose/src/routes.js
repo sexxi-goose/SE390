@@ -17,10 +17,10 @@ class ReactRouter extends React.Component {
 
     return (
       <React.Fragment>
-        <Route exact path="/" component={LoginForm} />
-        <Route  path="/lobby/:roomNum" component={Lobby} />
-        <Route  path="/game/:roomNum" component={GameRoom}/>
-        <Route  path="/test" component={testRoom}/>
+        <Route  path="" component={LoginForm} />
+        <Route  path="lobby/:roomNum" component={Lobby} />
+        <Route  path="game/:roomNum" component={GameRoom}/>
+        <Route  path="test" component={testRoom}/>
       </React.Fragment>
     );
   }
