@@ -11,7 +11,8 @@ RESPONSE_USERID_ROOMID = "UseridRoomid"
 NEW_USER_JOINED_ROOM = "NewUserJoinedRoom"
 REQUEST_GAME_START = "StartGame"
 
-server = socketio.Server()
+server = socketio.Server(cors_allowed_origins='*')
+
 logger = logging.Logger("ServerLogger")
 
 @server.event
