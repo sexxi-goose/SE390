@@ -3,3 +3,5 @@ requests
 websockets
 python-socketio
 gunicorn
+flask-cors
+
