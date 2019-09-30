@@ -5,11 +5,10 @@ let socket = new Socket();
 
 function handelClick () {
   let data = {
-    event_type: socket.RESPONSE_KILL,
     other: "hi"
   }
 
-  socket.sendEvent(socket.GameEvent, data);
+  socket.sendEvent(socket.START_GAME, data);
 };
 
 function testRoom () {

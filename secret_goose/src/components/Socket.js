@@ -44,6 +44,7 @@ export class Socket {
   }
 
   sendEvent(event, data){
-    this.socketConnection.emit(event, data);
+    data["eventType"] = event;
+    this.socketConnection.emit(GAME_EVENT, data);
   }
 }
