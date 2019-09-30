@@ -15,7 +15,7 @@ export class GameRoom extends React.Component {
       roomNum: props.match.params.roomNum,
       userId: props.userId
     };
-    this.socketConnection = socketConnection
+    // this.socketConnection = socketConnection
   }
 
   GenerateBoard(data) {

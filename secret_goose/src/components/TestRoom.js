@@ -3,17 +3,17 @@ import React from 'react';
 
 import {socketConnection} from "./Login.js";
 
-let socket = socketConnection;
+// let socket = socketConnection;
 function handelClick () {
   let data = {
     other: "hi"
   }
 
-  socket.sendEvent(socket.START_GAME, data);
+  socketConnection.sendEvent(socketConnection.START_GAME, data);
 };
 
 function testRoom () {
-  socket.addResponse(socket.NEW_PRESIDENT, (data) => {  alert(data.result);});
+  socketConnection.addResponse(socketConnection.NEW_PRESIDENT, (data) => {  alert(data.result);});
   return     <button onClick={handelClick}> test send event </button>
 }
 export default testRoom;

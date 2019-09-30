@@ -33,9 +33,10 @@ class GameSessions:
 
 
         def user_connected(self, user_id,  sid):
+            
+            print("*****************", sid, user_id, "*********************************************************")
             if user_id not in self._usernames:
                 raise RuntimeError(f"User not registered to room {self._room_id}")
-
             self._users[user_id] = sid
             self._sids.add(sid)
 

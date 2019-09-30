@@ -16,7 +16,7 @@ export class Lobby extends React.Component {
 
     };
 
-    this.socketConnection = socketConnection;
+    // this.socketConnection = socketConnectionsocketConnection;
     // const
 
   }

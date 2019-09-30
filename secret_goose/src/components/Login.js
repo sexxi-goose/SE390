@@ -6,7 +6,10 @@ import {Socket} from './Socket'
 
 
 
-let socketConnection = new Socket();
+let socketConnection = null;
+
+
+
 function Header(display) {
     return (
         <div id="TopTitle" className="center">
@@ -25,6 +28,10 @@ export class LoginForm extends React.Component {
     };
 
 
+  }
+
+  setupWebsocket = () => {
+    socketConnection = new Socket();
     socketConnection.addResponse(socketConnection.NEW_USER_JOINED_ROOM, data => {
       console.log(data["username"] + " joined the room");
     });
@@ -35,6 +42,7 @@ export class LoginForm extends React.Component {
       });
     });
   }
+
 
   handleChange = (event) => {
     const target = event.target;
@@ -47,6 +55,7 @@ export class LoginForm extends React.Component {
   }
 
   routeToGame = () => {
+    this.setupWebsocket();
     this.setState({redirectToGame:true})
   }
 

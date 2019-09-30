@@ -66,7 +66,9 @@ def handle_game_start(sid, data):
 def handle_game_events(sid, data):
     global server
     global logger
-
+    
+    print( "hello")
+    print(data)
     try:
         games.handle_event(sid, data["eventType"], data)
     except Exception as e:
