@@ -14,12 +14,12 @@ function VoteModal(chancellor, userid, president, roomId) {
 
     let selection = (eventField, select) => {
       eventField.preventDefault();
-      socketConnection.sendEvent(this.socketConnection.VOTE_FOR_CHANCELLOR, {
+      socketConnection.sendEvent(socketConnection.VOTE_FOR_CHANCELLOR, {
         choice: select
       });
 
     }
-    return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
+    return  <Popup defaultOpen ={true} modal>
     {close => (
       <div className="modal">
         <div className="header"> Vote </div>
@@ -49,7 +49,7 @@ function ChoosePolicyModal(policies, who) {
 
   //return index "card" to be discarded
   return(
-    <Popup trigger={<button className="button"> Open Modal </button>} modal>
+    <Popup defaultOpen = {true} modal>
       {close => (
         <div className="modal">
           <div className="header"> Choose a card to discard: </div>
@@ -119,7 +119,7 @@ function ChooseChancellorModal(players) {
 
   }
   let playerOptions = players.map(p => <option value={p}>{p}</option> )
-    return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
+    return  <Popup defaultOpen = {true} modal>
     {close => (
       <div className="modal">
         <div className="header"> Select a Chancellor </div>
