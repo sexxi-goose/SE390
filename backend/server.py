@@ -39,11 +39,12 @@ def handle_handshake(sid, data):
 
     room_id = data["room_id"]
     user_id = data["user_id"]
+    true_sid = data["sid"]
 
     logger.info(sid, user_id, room_id)
 
     try:
-        games.user_connected(room_id, user_id, sid)
+        games.user_connected(room_id, user_id, true_sid)
     except Exception as e:
         logger.error(f"Failed to connect user to game {room_id} errmsg={e}")
 
@@ -55,9 +56,10 @@ def handle_game_start(sid, data):
 
     logger.info(f"Game started from {sid}")
     logger.debug(sid, data)
+    true_sid = data["sid"]
 
     try:
-        games.start_game(sid)
+        games.start_game(true_sid)
     except Exception as e:
         logger.error(f"Failed to start game errmsg={e}")
 
@@ -67,10 +69,10 @@ def handle_game_events(sid, data):
     global server
     global logger
     
-    print( "hello")
-    print(data)
+    true_sid = data["sid"]
+
     try:
-        games.handle_event(sid, data["eventType"], data)
+        games.handle_event(true_sid, data["eventType"], data)
     except Exception as e:
         logger.error(f"Failed to handle game event={e}")
 
