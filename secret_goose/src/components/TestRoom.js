@@ -1,8 +1,9 @@
 import {Socket} from './Socket';
 import React from 'react';
-let socket = new Socket();
 
+import {socketConnection} from "./Login.js";
 
+let socket = socketConnection;
 function handelClick () {
   let data = {
     other: "hi"

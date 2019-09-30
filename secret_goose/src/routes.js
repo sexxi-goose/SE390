@@ -2,9 +2,14 @@ import React from "react";
 import { Route } from "react-router-dom";
 import {GameRoom} from "./components/Game";
 import Lobby from "./components/Lobby";
+import {Socket} from './components/Socket'
+
 
 import testRoom from "./components/TestRoom";
 import {LoginForm} from './components/Login.js';
+
+const socketConnection = new Socket();
+
 
 class ReactRouter extends React.Component {
   render() {

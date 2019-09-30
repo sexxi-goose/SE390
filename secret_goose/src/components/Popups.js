@@ -5,21 +5,19 @@ import MrGoose from '../assets/mrgoose.png';
 import Geese from '../assets/geese.png';
 import Students from '../assets/students.png';
 
+import GoodCard from '../assets/GoodCard.png';
+import BadCard from '../assets/EvilCard.png';
+import {socketConnection} from "./Login.js";
+// const socketConnection = new Socket();
 
 function VoteModal(chancellor, userid, president, roomId) {
+
     let selection = (eventField, select) => {
       eventField.preventDefault();
-      fetch('/voteChancellor', {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            room_id: roomId,
-            userid: userid,
-            choice: select
-          }),
+      socketConnection.sendEvent(this.socketConnection.VOTE_FOR_CHANCELLOR, {
+        choice: select
       });
+
     }
     return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
     {close => (
@@ -38,22 +36,45 @@ function VoteModal(chancellor, userid, president, roomId) {
   </Popup>;
 };
 
-function ChoosePolicyModal(policies) {
-  //   return  <Popup trigger={<button className="button"> Open Modal </button>} modal>
-  //   {close => (
-  //     <div className="modal">
-  //       <div className="header"> </div>
-  //       <div className="content"> </div>
-  //         <ButtonGroup
-  //     onPress={this.updateIndex}
-  //     selectedIndex={selectedIndex}
-  //     buttons={buttons}
-  //     containerStyle={{height: 100}}
-  //   />
-  //       <div className="actions"> </div>
-  //     </div>
-  //   )}
-  // </Popup>;
+function ChoosePolicyModal(policies, who) {
+  policies=["L", "L", "F"];
+
+  let selection = (eventField, select) => {
+    eventField.preventDefault();
+    socketConnection.sendEvent(who, {
+      choice: select
+    });
+
+  }
+
+  //return index "card" to be discarded
+  return(
+    <Popup trigger={<button className="button"> Open Modal </button>} modal>
+      {close => (
+        <div className="modal">
+          <div className="header"> Choose a card to discard: </div>
+          <div className="policy-content">
+            {policies.map(function(currentValue, index){
+
+              return(
+                <div className="policyCard" key={index}>
+                  <button policycard={index} id={(currentValue === "L" && "Good") || (currentValue === "F" && "Evil")}
+                  onClick={(event)=> {selection(event, index); close();}}>
+                  <img
+                    alt = {(currentValue === "L" && "GoodCard") || (currentValue === "F" && "BadCard") ||("None")}
+                    src={(currentValue === "L" && GoodCard) ||(currentValue === "F" && BadCard)}
+                  />
+                  </button>
+                </div>
+              );
+            })
+          }
+          </div>
+          <div className="actions"> </div>
+        </div>
+      )}
+    </Popup>);
+
 };
 
 function RoleModal(team, role, teamMates, MrGoose) {
@@ -89,17 +110,13 @@ function RoleModal(team, role, teamMates, MrGoose) {
 };
 
 function ChooseChancellorModal(players) {
-  let selection = (eventField, selectedUser) => {
+
+  let selection = (eventField, select) => {
     eventField.preventDefault();
-    fetch('/nominateChancellor', {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          choice: selectedUser
-        }),
+    socketConnection.sendEvent(socketConnection.NOMINATED_CHANCELLOR, {
+      choice: select
     });
+
   }
   let playerOptions = players.map(p => <option value={p}>{p}</option> )
     return  <Popup trigger={<button className="button"> Open Modal </button>} modal>

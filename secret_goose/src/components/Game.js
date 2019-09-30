@@ -1,9 +1,12 @@
 import React from 'react';
 import './../Style/Game.css';
 import Header from "./Header";
-import {VoteModal, ChoosePolicyModal, RoleModal, ChooseChancellorModal}  from "./Popups"
+import {VoteModal, ChoosePolicyModal, RoleModal, ChooseChancellorModal }  from "./Popups"
+import {socketConnection} from "./Login.js";
+
 import GoodCard from '../assets/GoodCard.png';
 import BadCard from '../assets/EvilCard.png';
+
 export class GameRoom extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +15,7 @@ export class GameRoom extends React.Component {
       roomNum: props.match.params.roomNum,
       userId: props.userId
     };
-    this.socketConnection = null
+    this.socketConnection = socketConnection
   }
 
   GenerateBoard(data) {
@@ -99,7 +102,7 @@ render() {
         <div className="Game-Left">
           {this.GenerateUserNameTable (nameTable)}
           <div id="DisplayButton">
-            {RoleModal(this.state.roomNum,"Good" , ["hi"], this.state.userId)}
+            {ChoosePolicyModal(this.state.roomNum,"Good" , ["hi"], this.state.userId)}
           </div>
         </div>
         <div className="Game-Right">

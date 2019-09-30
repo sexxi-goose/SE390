@@ -2,6 +2,8 @@ import React from 'react';
 import './../Style/Lobby.css';
 import Header from "./Header";
 import {Redirect} from "react-router-dom";
+import {socketConnection} from "./Login.js";
+
 
 export class Lobby extends React.Component {
   constructor(props) {
@@ -14,7 +16,7 @@ export class Lobby extends React.Component {
 
     };
 
-    this.socketConnection = null
+    this.socketConnection = socketConnection;
     // const
 
   }

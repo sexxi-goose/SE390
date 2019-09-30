@@ -92,3 +92,33 @@
 #IconChan{
     background-color: #e07e58; /* Orange-Red Color */
 }
+
+/* remove this */
+.policy-content{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+.policyCard{
+  margin:5%;
+
+  border: 1px solid black;
+}
+.policyCard > button {
+  padding:0px;
+}
+#Good {
+    background-color: greenyellow;
+}
+
+#Evil {
+    background-color: red;
+}
+
+.modal > .header {
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  margin: auto;
+}

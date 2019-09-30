@@ -2,10 +2,11 @@ import React from 'react';
 import './../Style/Login.css';
 import { Redirect } from 'react-router-dom'
 import {Socket} from './Socket'
+// import {socketConnection} from "../routes.js";
 
 
 
-
+let socketConnection = new Socket();
 function Header(display) {
     return (
         <div id="TopTitle" className="center">
@@ -23,12 +24,12 @@ export class LoginForm extends React.Component {
       redirectToGame: false
     };
 
-    this.socketConnection = new Socket();
-    this.socketConnection.addResponse(this.socketConnection.NEW_USER_JOINED_ROOM, data => {
+
+    socketConnection.addResponse(socketConnection.NEW_USER_JOINED_ROOM, data => {
       console.log(data["username"] + " joined the room");
     });
-    this.socketConnection.addResponse(this.socketConnection.REQUEST_USERID_ROOMID, (data) => {
-      this.socketConnection.sendEvent(this.socketConnection.RESPONSE_USERID_ROOMID, {
+    socketConnection.addResponse(socketConnection.REQUEST_USERID_ROOMID, (data) => {
+      socketConnection.sendEvent(socketConnection.RESPONSE_USERID_ROOMID, {
         room_id: this.state.roomId,
         user_id: this.userId
       });
@@ -144,3 +145,5 @@ export class LoginForm extends React.Component {
     );
   }
 }
+
+export {socketConnection};
