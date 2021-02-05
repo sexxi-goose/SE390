@@ -4,6 +4,7 @@ START_GAME = "StartGame" # Frontend -> Backend
 START_GAME_RESPONSE = "StartGameInfo" # Backend -> Frontend; username->userid mapping
 
 NEW_PRESIDENT = "President" # Backend -> Frontend; userid of the president, govtFailCount
+CANDIDATES_CHANCELLOR = "CandidateChancellor" # Frontend -> Backend; userids of candidates for the role of chancellor
 NOMINATED_CHANCELLOR = "NominatedChancellor" # Frontend -> Backend; userid of the chancellor
 VOTE_CHANCELLOR = "VoteChancellor" # Backend -> Frontend; userid of the chancellor in case voting is required.
 ELECTED_CHANCELLOR = "ElectedChancellor" # Backend -> Frontend; userid of the chancellor
